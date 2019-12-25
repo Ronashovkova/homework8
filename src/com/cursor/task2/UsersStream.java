@@ -20,8 +20,8 @@ public class UsersStream {
 
     public static void processUsers() {
         List<User> users = buildUsersList();
-        Map<String, List<String>> teamEmailMap = users.stream().
-                filter(user -> user.getLoginDate().isAfter(LocalDate.now().minusDays(14)))
+        Map<String, List<String>> teamEmailMap = users.stream()
+                .filter(user -> user.getLoginDate().isAfter(LocalDate.now().minusDays(7)))
                 .collect(Collectors.groupingBy(User::getTeam,
                         Collectors.mapping(User::getEmail, Collectors.toList())));
         System.out.println("Map of teams with e-mails: " + teamEmailMap);
